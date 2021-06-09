@@ -1,12 +1,80 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP .NET Core service.
 
 version: '3.4'
 
 services:
-    db:
-        image: mcr.microsoft.com/mssql/server:2019-latest
-        container_name: db
-        ports:
-          - 1433:1433
-        environment:
-          - ACCEPT_EULA=Y
-          - SA_PASSWORD=P@ssw0rd
+
+  writedb:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: writedb
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=P@ssw0rd
+    ports:
+      - 1433:1433
+    volumes:
+      - writedb_data:/var/opt/mssql
+
+  readdb:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: readdb
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=P@ssw0rd
+    ports:
+      - 1434:1433
+    volumes:
+      - readdb_data:/var/opt/mssql
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    hostname: rabbitmq
+
+  portainer:
+    image: portainer/portainer-ce
+    container_name: portainer
+    restart: always
+    ports:
+      - "8080:8000"
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
+  write:
+    image: write
+    build:
+      context: .
+      dockerfile: Services/Write/Dockerfile
+    ports:
+      - 5000:5000
+    depends_on:
+      - writedb
+      - rabbitmq
+    # environment:
+    #   - ConnectionStrings:DefaultConnection=Server=writedb,1433;Database=app;User Id=sa;Password=P@ssw0rd
+
+  read:
+    image: read
+    build:
+      context: .
+      dockerfile: Services/Read/Dockerfile
+    ports:
+      - 5001:5000
+    depends_on:
+      - readdb
+      - rabbitmq
+    # environment:
+    #   - ConnectionStrings:DefaultConnection=Server=readdb,1433;Database=app;User Id=sa;Password=P@ssw0rd
+
+volumes:
+  writedb_data:
+  readdb_data:
+  rabbitmq_data:
+  portainer_data:
