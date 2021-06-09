@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "zfNVSaksBJAtyzKirvPX9OeimuCsDGeTyIdWGdekhus4okDw/wL9fejHtMPiOHCSq9e35yF/GOMytcsk/LV24w==",
+  "dgSpecHash": "A62zSmkF5OK1yChgLw34b41HISR3xCjNU8cTHVFgkF2wUzPnmXd6gerhY2wAZeqA2bOnFVPlWbOdI4OExXHDHw==",
   "success": true,
   "projectFilePath": "/Users/mikolajsemeniuk/Projects/C#/NET-CQRS-Microservices/Services/Write/Write.csproj",
   "expectedPackageFiles": [

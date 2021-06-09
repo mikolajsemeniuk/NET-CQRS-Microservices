@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Write.Models;
 
 namespace Write.Data
 {
@@ -7,5 +8,6 @@ namespace Write.Data
 		public DataContext(DbContextOptions options) : base(options)
 		{
 		}
+        public DbSet<Article> Articles { get; set; }
 	}
 }
