@@ -49,6 +49,7 @@ services:
 
   write:
     image: write
+    container_name: write
     build:
       context: .
       dockerfile: Services/Write/Dockerfile
@@ -57,11 +58,14 @@ services:
     depends_on:
       - writedb
       - rabbitmq
-    # environment:
-    #   - ConnectionStrings:DefaultConnection=Server=writedb,1433;Database=app;User Id=sa;Password=P@ssw0rd
+      - portainer
+    environment:
+      - ConnectionStrings:DefaultConnection=Server=writedb,1433;Database=app;User Id=sa;Password=P@ssw0rd
+      - EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672
 
   read:
     image: read
+    container_name: read
     build:
       context: .
       dockerfile: Services/Read/Dockerfile
@@ -70,8 +74,10 @@ services:
     depends_on:
       - readdb
       - rabbitmq
-    # environment:
-    #   - ConnectionStrings:DefaultConnection=Server=readdb,1433;Database=app;User Id=sa;Password=P@ssw0rd
+      - portainer
+    environment:
+      - ConnectionStrings:DefaultConnection=Server=readdb,1433;Database=app;User Id=sa;Password=P@ssw0rd
+      - EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672
 
 volumes:
   writedb_data:
