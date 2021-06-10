@@ -1,0 +1,12 @@
+/Users/mikolajsemeniuk/Projects/C#/NET-CQRS-Microservices/Events/bin/Debug/net5.0/Events.deps.json
+/Users/mikolajsemeniuk/Projects/C#/NET-CQRS-Microservices/Events/bin/Debug/net5.0/Events.dll
+/Users/mikolajsemeniuk/Projects/C#/NET-CQRS-Microservices/Events/bin/Debug/net5.0/ref/Events.dll
+/Users/mikolajsemeniuk/Projects/C#/NET-CQRS-Microservices/Events/bin/Debug/net5.0/Events.pdb
+/Users/mikolajsemeniuk/Projects/C#/NET-CQRS-Microservices/Events/obj/Debug/net5.0/Events.csprojAssemblyReference.cache
+/Users/mikolajsemeniuk/Projects/C#/NET-CQRS-Microservices/Events/obj/Debug/net5.0/Events.GeneratedMSBuildEditorConfig.editorconfig
+/Users/mikolajsemeniuk/Projects/C#/NET-CQRS-Microservices/Events/obj/Debug/net5.0/Events.AssemblyInfoInputs.cache
+/Users/mikolajsemeniuk/Projects/C#/NET-CQRS-Microservices/Events/obj/Debug/net5.0/Events.AssemblyInfo.cs
+/Users/mikolajsemeniuk/Projects/C#/NET-CQRS-Microservices/Events/obj/Debug/net5.0/Events.csproj.CoreCompileInputs.cache
+/Users/mikolajsemeniuk/Projects/C#/NET-CQRS-Microservices/Events/obj/Debug/net5.0/Events.dll
+/Users/mikolajsemeniuk/Projects/C#/NET-CQRS-Microservices/Events/obj/Debug/net5.0/ref/Events.dll
+/Users/mikolajsemeniuk/Projects/C#/NET-CQRS-Microservices/Events/obj/Debug/net5.0/Events.pdb

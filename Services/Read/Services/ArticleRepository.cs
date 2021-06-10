@@ -24,6 +24,7 @@ namespace Read.Services
                     ArticleId = article.ArticleId,
                     Title = article.Title,
                     Description = article.Description,
+                    ReadId = article.ReadId,
                     CreatedAt = article.CreatedAt,
                     UpdatedAt = article.UpdatedAt
                 })
@@ -37,6 +38,7 @@ namespace Read.Services
                     ArticleId = article.ArticleId,
                     Title = article.Title,
                     Description = article.Description,
+                    ReadId = article.ReadId,
                     CreatedAt = article.CreatedAt,
                     UpdatedAt = article.UpdatedAt
                 })

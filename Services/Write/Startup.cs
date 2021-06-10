@@ -1,3 +1,6 @@
+using System.Reflection;
+using MassTransit;
+using MassTransit.Definition;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +31,43 @@ namespace Write
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+            // services.AddMassTransit(options =>
+            // {
+            //     // OPTIONAL FOR ALL CONSUMERS:
+            //     //
+            //     //options.AddConsumers(Assembly.GetEntryAssembly());
+
+            //     // OPTIONAL FOR CERTAIN CONSUMERS:
+            //     //
+            //     // options.AddConsumer<AddArticleSubscriber>();
+            //     // options.AddConsumer<UpdateArticleSubscriber>();
+            //     // options.AddConsumer<RemoveArticleSubscriber>();
+
+            //     options.UsingRabbitMq((context, configuration) => 
+            //     {
+            //         configuration.Host(Configuration["EventBusSettings:HostAddress"]);
+            //         // OPTIONAL:
+            //         //
+            //         // configuration.ConfigureEndpoints(context, 
+            //             // new KebabCaseEndpointNameFormatter("write", false));
+
+            //         // configuration.ReceiveEndpoint("name of queue", configure => 
+            //         // {
+            //         //     configure.ConfigureConsumer<AddArticleSubscriber>(context); 
+            //         //     configure.ConfigureConsumer<UpdateArticleSubscriber>(context); 
+            //         //     configure.ConfigureConsumer<RemoveArticleSubscriber>(context); 
+            //         // });
+            //     });
+            // });
+            // services.AddMassTransitHostedService();
+            services.AddMassTransit(options =>
+            {
+                options.UsingRabbitMq((context, configuration) => 
+                {
+                    configuration.Host(Configuration["EventBusSettings:HostAddress"]);
+                });
+            });
+            services.AddMassTransitHostedService();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

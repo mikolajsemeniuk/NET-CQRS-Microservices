@@ -7,6 +7,7 @@ namespace Read.Payloads
         public int ArticleId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public int ReadId { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }

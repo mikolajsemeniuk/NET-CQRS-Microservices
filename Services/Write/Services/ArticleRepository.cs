@@ -1,5 +1,7 @@
 using System;
 using System.Threading.Tasks;
+using Events;
+using MassTransit;
 using Write.Data;
 using Write.Inputs;
 using Write.Interfaces;
@@ -10,10 +12,12 @@ namespace Write.Services
     public class ArticleRepository : IArticleRepository
     {
         private readonly DataContext _context;
+        private readonly IPublishEndpoint _endpoint;
 
-        public ArticleRepository(DataContext context)
+        public ArticleRepository(DataContext context, IPublishEndpoint endpoint)
         {
             _context = context;
+            _endpoint = endpoint;
         }
 
         public async Task<string> AddArticleAsync(ArticleInput input)
@@ -28,6 +32,8 @@ namespace Write.Services
 
             if (await _context.SaveChangesAsync() < 1)
                 throw new Exception("problem has occurred");
+
+            await _endpoint.Publish(new AddArticleEvent(article.ArticleId, article.Title, article.Description));
 
             return "Article Added";
         }
@@ -47,6 +53,8 @@ namespace Write.Services
             if (await _context.SaveChangesAsync() < 1)
                 throw new Exception("problem has occurred");
 
+            await _endpoint.Publish(new UpdateArticleEvent(article.ArticleId, article.Title, article.Description));
+
             return "Article Updated";
         }
 
@@ -60,6 +68,8 @@ namespace Write.Services
 
             if (await _context.SaveChangesAsync() < 1)
                 throw new Exception("problem has occurred");
+
+            await _endpoint.Publish(new RemoveArticleEvent(article.ArticleId));
 
             return "Article Removed";
         }
