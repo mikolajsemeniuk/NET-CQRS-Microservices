@@ -29,5 +29,3 @@ Adding connection string
     "HostAddress": "amqp://guest:guest@localhost:5672"
 }
 ```
-Disable dotnet watch run from opening browser with swagger
-[https://stackoverflow.com/questions/43957547/how-to-disable-browser-launch-when-building-and-running-in-net-core/43958782#43958782](https://stackoverflow.com/questions/43957547/how-to-disable-browser-launch-when-building-and-running-in-net-core/43958782#43958782)
