@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +23,7 @@ namespace Read.Controllers
             Ok(await _repository.GetArticlesAsync());
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<ArticlePayload>>> GetArticleAsync(int id) =>
+        public async Task<ActionResult<IEnumerable<ArticlePayload>>> GetArticleAsync(Guid id) =>
             Ok(await _repository.GetArticleAsync(id));
     }
 }

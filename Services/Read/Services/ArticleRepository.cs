@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,24 +24,18 @@ namespace Read.Services
                 {
                     ArticleId = article.ArticleId,
                     Title = article.Title,
-                    Description = article.Description,
-                    ReadId = article.ReadId,
-                    CreatedAt = article.CreatedAt,
-                    UpdatedAt = article.UpdatedAt
+                    Description = article.Description
                 })
                 .ToListAsync();
 
-        public async Task<ArticlePayload> GetArticleAsync(int id) =>
+        public async Task<ArticlePayload> GetArticleAsync(Guid id) =>
             await _context.Articles
                 .Where(article => article.ArticleId == id)
                 .Select(article => new ArticlePayload
                 {
                     ArticleId = article.ArticleId,
                     Title = article.Title,
-                    Description = article.Description,
-                    ReadId = article.ReadId,
-                    CreatedAt = article.CreatedAt,
-                    UpdatedAt = article.UpdatedAt
+                    Description = article.Description
                 })
                 .SingleAsync();
     }

@@ -38,7 +38,7 @@ namespace Write.Services
             return "Article Added";
         }
 
-        public async Task<string> UpdateArticleAsync(int id, ArticleInput input)
+        public async Task<string> UpdateArticleAsync(Guid id, ArticleInput input)
         {
             var article = await _context.Articles.FindAsync(id);
             if (article == null)
@@ -58,7 +58,7 @@ namespace Write.Services
             return "Article Updated";
         }
 
-        public async Task<string> RemoveArticleAsync(int id)
+        public async Task<string> RemoveArticleAsync(Guid id)
         {
             var article = await _context.Articles.FindAsync(id);
             if (article == null)

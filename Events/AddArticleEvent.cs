@@ -1,4 +1,6 @@
+using System;
+
 namespace Events
 {
-    public record AddArticleEvent(int id, string title, string description);
+    public record AddArticleEvent(Guid id, string title, string description);
 }

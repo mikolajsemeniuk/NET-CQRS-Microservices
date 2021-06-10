@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Write.Data;
+using Read.Data;
 
-namespace Write.Migrations
+namespace Read.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210609172343_Initial")]
-    partial class Initial
+    [Migration("20210610094643_AddedGUIDInsteadOfInt")]
+    partial class AddedGUIDInsteadOfInt
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,15 +21,11 @@ namespace Write.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("Write.Models.Article", b =>
+            modelBuilder.Entity("Read.Models.Article", b =>
                 {
-                    b.Property<int>("ArticleId")
+                    b.Property<Guid>("ArticleId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -38,9 +34,6 @@ namespace Write.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("ArticleId");
 

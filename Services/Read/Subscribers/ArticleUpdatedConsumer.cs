@@ -19,7 +19,7 @@ namespace Read.Subscribers
         public async Task Consume(ConsumeContext<UpdateArticleEvent> context)
         {
             var article = await _context.Articles.SingleAsync(
-                article => article.ReadId == context.Message.id);
+                article => article.ArticleId == context.Message.id);
 
             article.Title = context.Message.title;
             article.Description = context.Message.description;

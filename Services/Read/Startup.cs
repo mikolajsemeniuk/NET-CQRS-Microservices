@@ -38,45 +38,27 @@ namespace Read
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
-            // services.AddMassTransit(options =>
-            // {
-            //     // OPTIONAL FOR ALL CONSUMERS:
-            //     //
-            //     // options.AddConsumers(Assembly.GetEntryAssembly());
-
-            //     // OPTIONAL FOR CERTAIN CONSUMERS:
-            //     //
-            //     options.AddConsumer<ArticleAddedConsumer>();
-            //     // options.AddConsumer<UpdateArticleSubscriber>();
-            //     // options.AddConsumer<RemoveArticleSubscriber>();
-
-            //     options.UsingRabbitMq((context, configuration) => 
-            //     {
-            //         configuration.Host(Configuration["EventBusSettings:HostAddress"]);
-            //         // OPTIONAL:
-            //         //
-            //         // configuration.ConfigureEndpoints(context, 
-            //             // new KebabCaseEndpointNameFormatter("write", false));
-
-            //         configuration.ReceiveEndpoint("article-queue", configure => 
-            //         {
-            //             configure.ConfigureConsumer<ArticleAddedConsumer>(context); 
-            //             // configure.ConfigureConsumer<UpdateArticleSubscriber>(context); 
-            //             // configure.ConfigureConsumer<RemoveArticleSubscriber>(context); 
-            //         });
-            //     });
-            // });
-            // services.AddMassTransitHostedService();
-
             services.AddMassTransit(options =>
             {
+                // OPTIONAL FOR ALL CONSUMERS (All microservices have to have it in shared library):
+                //
+                options.AddConsumers(Assembly.GetEntryAssembly());
+
+                // OPTIONAL FOR CERTAIN CONSUMERS:
+                //
                 options.AddConsumer<ArticleAddedConsumer>();
                 options.AddConsumer<ArticleUpdatedConsumer>();
                 options.AddConsumer<ArticleRemovedConsumer>();
+
                 options.UsingRabbitMq((context, configuration) => 
                 {
                     configuration.Host(Configuration["EventBusSettings:HostAddress"]);
-                    configuration.ReceiveEndpoint("article-queue", configure =>
+                    // OPTIONAL:
+                    //
+                    // configuration.ConfigureEndpoints(context, 
+                        // new KebabCaseEndpointNameFormatter("write", false));
+
+                    configuration.ReceiveEndpoint("article-queue", configure => 
                     {
                         configure.ConfigureConsumer<ArticleAddedConsumer>(context);
                         configure.ConfigureConsumer<ArticleUpdatedConsumer>(context);
@@ -85,7 +67,6 @@ namespace Read
                 });
             });
             services.AddMassTransitHostedService();
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

@@ -19,7 +19,7 @@ namespace Read.Subscribers
         public async Task Consume(ConsumeContext<RemoveArticleEvent> context)
         {
             var article = await _context.Articles.SingleAsync(
-                article => article.ReadId == context.Message.id);
+                article => article.ArticleId == context.Message.id);
 
             _context.Articles.Remove(article);
 

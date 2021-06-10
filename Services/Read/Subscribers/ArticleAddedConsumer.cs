@@ -10,18 +10,19 @@ namespace Read.Subscribers
     public class ArticleAddedConsumer : IConsumer<AddArticleEvent>
     {
         private readonly DataContext _context;
+        private readonly IPublishEndpoint _endpoint;
 
-        public ArticleAddedConsumer(DataContext context)
+        public ArticleAddedConsumer(DataContext context, IPublishEndpoint endpoint)
         {
             _context = context;
+            _endpoint = endpoint;
         }
 
         public async Task Consume(ConsumeContext<AddArticleEvent> context)
         {
-            Console.WriteLine("hej cos sie tu trigeruje");
             _context.Articles.Add(new Article
             {
-                ReadId = context.Message.id,
+                ArticleId = context.Message.id,
                 Title = context.Message.title,
                 Description = context.Message.description
             });
