@@ -16,16 +16,3 @@ dotnet watch -p Services/Write run
 dotnet run -p Services/Read
 dotnet watch -p Services/Read run
 ```
-## Adding MicroRabbit
-```sh
-dotnet add package MassTransit.AspNetCore &&
-dotnet add package MassTransit.RabbitMQ
-```
-Adding endpoint
-in `Services/Write/Services/ArticleRepository.cs`
-Adding connection string
-```json
-"EventBusSettings": {
-    "HostAddress": "amqp://guest:guest@localhost:5672"
-}
-```
