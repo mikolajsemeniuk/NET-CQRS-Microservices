@@ -3,7 +3,7 @@
 namespace Write.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         [HttpGet]

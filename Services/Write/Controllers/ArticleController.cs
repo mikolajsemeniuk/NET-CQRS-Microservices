@@ -9,7 +9,7 @@ using Write.Interfaces;
 namespace Write.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ArticleController : ControllerBase
     {
         private readonly IArticleRepository _repository;

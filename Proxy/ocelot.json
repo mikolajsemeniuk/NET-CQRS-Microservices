@@ -1,0 +1,67 @@
+{
+    "Routes": [
+        {
+            "DownstreamPathTemplate": "/api/article",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "read",
+                    "Port": 5000
+                }
+            ],
+            "UpstreamPathTemplate": "/article",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/article/{id}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "read",
+                    "Port": 5000
+                }
+            ],
+            "UpstreamPathTemplate": "/article/{id}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/article/",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "write",
+                    "Port": 5000
+                }
+            ],
+            "UpstreamPathTemplate": "/article",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/article/{id}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "write",
+                    "Port": 5000
+                }
+            ],
+            "UpstreamPathTemplate": "/article/{id}",
+            "UpstreamHttpMethod": [ "Put" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/article/{id}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "write",
+                    "Port": 5000
+                }
+            ],
+            "UpstreamPathTemplate": "/article/{id}",
+            "UpstreamHttpMethod": [ "Delete" ]
+        }
+    ],
+    "GlobalConfiguration": {
+        "BaseUrl": "https://localhost:7001"
+    }
+}

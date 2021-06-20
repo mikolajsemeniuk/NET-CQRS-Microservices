@@ -14,6 +14,8 @@ services:
       - 1433:1433
     volumes:
       - writedb_data:/var/opt/mssql
+    depends_on:
+      - rabbitmq
 
   readdb:
     image: mcr.microsoft.com/mssql/server:2019-latest
@@ -25,6 +27,8 @@ services:
       - 1434:1433
     volumes:
       - readdb_data:/var/opt/mssql
+    depends_on:
+      - rabbitmq
 
   rabbitmq:
     image: rabbitmq:management
@@ -46,6 +50,20 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
+
+  proxy:
+    image: proxy
+    container_name: proxy
+    build:
+      context: .
+      dockerfile: Proxy/Dockerfile
+    ports:
+      - 6000:5000
+    depends_on:
+      - write
+      - read
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
 
   write:
     image: write

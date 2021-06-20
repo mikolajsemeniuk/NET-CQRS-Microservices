@@ -47,12 +47,12 @@
             "dockerBuild": {
                 "tag": "netcqrsmicroservices:dev",
                 "target": "base",
-                "dockerfile": "${workspaceFolder}/Services/Write/Dockerfile",
+                "dockerfile": "${workspaceFolder}/Proxy/Dockerfile",
                 "context": "${workspaceFolder}",
                 "pull": true
             },
             "netCore": {
-                "appProject": "${workspaceFolder}/Services/Write/Write.csproj"
+                "appProject": "${workspaceFolder}/Proxy/Proxy.csproj"
             }
         },
         {
@@ -63,12 +63,12 @@
             ],
             "dockerBuild": {
                 "tag": "netcqrsmicroservices:latest",
-                "dockerfile": "${workspaceFolder}/Services/Write/Dockerfile",
+                "dockerfile": "${workspaceFolder}/Proxy/Dockerfile",
                 "context": "${workspaceFolder}",
                 "pull": true
             },
             "netCore": {
-                "appProject": "${workspaceFolder}/Services/Write/Write.csproj"
+                "appProject": "${workspaceFolder}/Proxy/Proxy.csproj"
             }
         },
         {
@@ -79,7 +79,7 @@
             ],
             "dockerRun": {},
             "netCore": {
-                "appProject": "${workspaceFolder}/Services/Write/Write.csproj",
+                "appProject": "${workspaceFolder}/Proxy/Proxy.csproj",
                 "enableDebugging": true
             }
         },
@@ -91,7 +91,7 @@
             ],
             "dockerRun": {},
             "netCore": {
-                "appProject": "${workspaceFolder}/Services/Write/Write.csproj"
+                "appProject": "${workspaceFolder}/Proxy/Proxy.csproj"
             }
         }
     ]

@@ -8,7 +8,7 @@ using Read.Payloads;
 namespace Read.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ArticleController : ControllerBase
     {
         private readonly IArticleRepository _repository;
